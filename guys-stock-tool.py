@@ -34,14 +34,23 @@ def main_menu(portfolio):
          return main_menu_options.EXIT
       else:
          guy_print.print_retry_message()
-   
+
+def add_stock(portfolio):
+   guy_print.print_with_dashes("What stock would you like to add? Please use ticker letters. Example: MSFT")
+   stock_abbr = raw_input()
+   guy_print.print_with_dashes("How much of that stock would you like to add? Numbers only")
+   amount  = input()
+   #portfolio.add_stock(stock_abbr, amount)
+   guy_print.print_with_dashes(str(amount) + " share(s) of stock " + stock_abbr + " added.")
+      
+
 intro()
 portfolio = load_portfolio()
 while(True):
    action = main_menu(portfolio)
    if(action == main_menu_options.ADD_STOCK):
-      print "add stock"
+      add_stock(portfolio)
    elif(action == main_menu_options.SHOW_PORTFOLIO):
-      print "show portfolio"
+      show_portfolio(portfolio)
    elif(action == main_menu_options.EXIT):
       exit()
