@@ -40,9 +40,11 @@ def add_stock(portfolio):
    stock_abbr = raw_input()
    guy_print.print_with_dashes("How much of that stock would you like to add? Numbers only")
    amount  = input()
-   #portfolio.add_stock(stock_abbr, amount)
+   portfolio.add_stock(stock_abbr, amount)
    guy_print.print_with_dashes(str(amount) + " share(s) of stock " + stock_abbr + " added.")
       
+def show_portfolio(portfolio):
+   portfolio.show_portfolio()
 
 intro()
 portfolio = load_portfolio()
