@@ -1,6 +1,6 @@
 import utilities.guy_print as guy_print
 import portfolio as p
-import utilities.main_menu_options as main_menu_options
+from menu_actions import *
 
 def intro():
     print "Welcome to Guys Stock Tool! A Stock Portfolio maintainence program and information giver...designed by Guy, for Guy!"
@@ -19,42 +19,6 @@ def load_portfolio():
          option_is_valid = True
       else:
          guy_print.print_retry_message()
-   
-
-def main_menu(portfolio):
-   option_is_valid = False
-   guy_print.print_with_dashes("What do you want to do with " + portfolio.name + "?\n1.Add Stock\n2.Remove Stock\n3.Show Portfolio\nOR\n4.Exit Program")
-   while(option_is_valid != True):
-      input = raw_input()
-      if(input == "1"):
-         return main_menu_options.ADD_STOCK
-      elif(input == "2"):
-         return main_menu_options.REMOVE_STOCK
-      elif(input == "3"):
-         return main_menu_options.SHOW_PORTFOLIO
-      elif(input == "4"):
-         return main_menu_options.EXIT
-      else:
-         guy_print.print_retry_message()
-
-def add_stock(portfolio):
-   guy_print.print_with_dashes("What stock would you like to add? Please use ticker letters. Example: MSFT")
-   stock_abbr = raw_input()
-   guy_print.print_with_dashes("How much of that stock would you like to add? Numbers only, please.")
-   amount  = input()
-   portfolio.add_stock(stock_abbr, amount)
-   guy_print.print_with_dashes(str(amount) + " share(s) of stock " + stock_abbr + " added.")
-
-def remove_stock(portfolio):
-   guy_print.print_with_dashes("What stock would you like to remove? Please choose one listed above.")
-   stock_abbr = raw_input()
-   guy_print.print_with_dashes("How much of that stock would you like to remove? Numbers only, please.")
-   amount = input()
-   status = portfolio.remove_stock(stock_abbr, amount)
-   if(status == -1):
-      guy_print.print_with_dashes("Error removing stock, please make sure you use a valid abbreviation.")
-   else:
-      guy_print.print_with_dashes(str(amount) + " share(s) of stock " + stock_abbr + " removed. You now have " + str(portfolio.get_stock_amount(stock_abbr)) + " share(s) left.")
 
 def show_portfolio(portfolio):
    portfolio.show_portfolio()
@@ -62,12 +26,12 @@ def show_portfolio(portfolio):
 intro()
 portfolio = load_portfolio()
 while(True):
-   action = main_menu(portfolio)
+   action = main_menu.main_menu(portfolio)
    if(action == main_menu_options.ADD_STOCK):
-      add_stock(portfolio)
+      add_stock.add_stock(portfolio)
    elif(action == main_menu_options.REMOVE_STOCK):
       show_portfolio(portfolio)
-      remove_stock(portfolio)
+      remove_stock.remove_stock(portfolio)
    elif(action == main_menu_options.SHOW_PORTFOLIO):
       show_portfolio(portfolio)
    elif(action == main_menu_options.EXIT):
