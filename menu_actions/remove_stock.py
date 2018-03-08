@@ -5,6 +5,8 @@ def remove_stock(portfolio):
    stock_abbr = raw_input()
    guy_print.print_with_dashes("How much of that stock would you like to remove? Numbers only, please.")
    amount = input()
+   if amount is None:
+      guy_print.print_with_dashes("Error removing stock, please make sure you use a valid abbreviation.")
    status = portfolio.remove_stock(stock_abbr, amount)
    if(status == -1):
       guy_print.print_with_dashes("Error removing stock, please make sure you use a valid abbreviation.")
